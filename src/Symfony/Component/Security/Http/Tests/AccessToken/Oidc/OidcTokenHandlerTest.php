@@ -54,9 +54,9 @@ class OidcTokenHandlerTest extends TestCase
         $userBadge = (new OidcTokenHandler(
             new ES256(),
             $this->getJWK(),
+            self::AUDIENCE,
             $loggerMock,
-            $claim,
-            self::AUDIENCE
+            $claim
         ))->getUserBadgeFrom($token);
         $actualUser = $userBadge->getUserLoader()();
 
@@ -87,9 +87,9 @@ class OidcTokenHandlerTest extends TestCase
         (new OidcTokenHandler(
             new ES256(),
             $this->getJWK(),
+            self::AUDIENCE,
             $loggerMock,
-            'sub',
-            self::AUDIENCE
+            'sub'
         ))->getUserBadgeFrom($token);
     }
 
@@ -145,9 +145,9 @@ class OidcTokenHandlerTest extends TestCase
         (new OidcTokenHandler(
             new ES256(),
             self::getJWK(),
+            self::AUDIENCE,
             $loggerMock,
-            'email',
-            self::AUDIENCE
+            'email'
         ))->getUserBadgeFrom($token);
     }
 

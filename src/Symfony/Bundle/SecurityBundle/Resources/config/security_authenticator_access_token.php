@@ -57,9 +57,9 @@ return static function (ContainerConfigurator $container) {
             ->args([
                 abstract_arg('signature algorithm'),
                 abstract_arg('jwk'),
+                abstract_arg('audience'),
                 service('logger')->nullOnInvalid(),
                 'sub',
-                null,
             ])
     ;
 };

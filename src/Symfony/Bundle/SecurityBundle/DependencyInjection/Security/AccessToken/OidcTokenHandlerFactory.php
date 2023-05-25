@@ -29,8 +29,8 @@ class OidcTokenHandlerFactory implements TokenHandlerFactoryInterface
     public function create(ContainerBuilder $container, string $id, array|string $config): void
     {
         $tokenHandlerDefinition = $container->setDefinition($id, new ChildDefinition('security.access_token_handler.oidc'));
-        $tokenHandlerDefinition->replaceArgument(3, $config['claim']);
-        $tokenHandlerDefinition->replaceArgument(4, $config['audience']);
+        $tokenHandlerDefinition->replaceArgument(4, $config['claim']);
+        $tokenHandlerDefinition->replaceArgument(2, $config['audience']);
 
         // Create the signature algorithm and the JWK
         if (!ContainerBuilder::willBeAvailable('web-token/jwt-core', Algorithm::class, ['symfony/security-bundle'])) {
@@ -67,7 +67,7 @@ class OidcTokenHandlerFactory implements TokenHandlerFactoryInterface
                     ->end()
                     ->scalarNode('audience')
                         ->info('Audience set in the token, for validation purpose.')
-                        ->defaultNull()
+                        ->isRequired()
                     ->end()
                     ->arrayNode('signature')
                         ->isRequired()
