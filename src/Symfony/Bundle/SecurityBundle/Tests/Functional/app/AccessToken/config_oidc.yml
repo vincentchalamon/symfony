@@ -23,6 +23,7 @@ security:
                     oidc:
                         claim: 'username'
                         audience: 'Symfony OIDC'
+                        issuers: [ 'https://www.example.com' ]
                         signature:
                             algorithm: 'ES256'
                             # tip: use https://mkjwk.org/ to generate a JWK
